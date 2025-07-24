@@ -7,7 +7,7 @@ from trees.models import Tree
 
 class Profile(models.Model):
     about = models.TextField()
-    joined = models.DateTimeField(auto_created=True)
+    joined = models.DateTimeField(auto_now_add=True)
 
 
 class User(AbstractUser):
