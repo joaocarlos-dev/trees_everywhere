@@ -13,9 +13,16 @@ class Tree(models.Model):
 
 
 class PlantedTree(models.Model):
-    age = models.IntegerField
-    planted_at = models.DateTimeField(auto_created=True)
-    user = User
-    tree = Tree
-    account = Account
-    location = tuple[models.DecimalField, models.DecimalField]
+    age = models.IntegerField()
+    planted_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='planted_trees')
+    tree = models.ForeignKey(Tree, on_delete=models.CASCADE)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+    latitude = models.DecimalField()
+    longitude = models.DecimalField()
+
+    @property
+    def location(self):
+        return (self.latitude, self.longitude)
