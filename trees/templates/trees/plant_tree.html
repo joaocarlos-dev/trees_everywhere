@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Tree</title>
+  </head>
+  <body>
+    <h1>Plant new tree</h1>
+
+    <form method="post" novalidate>
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit">Plant</button>
+    </form>
+
+    <p><a href="{% url 'my_trees' %}">Go back to My Trees</a></p>
+  </body>
+</html>
