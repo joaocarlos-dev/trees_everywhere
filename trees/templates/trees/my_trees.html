@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Minhas Árvores</title>
+  </head>
+  <body>
+    <h1>Minhas Árvores Plantadas</h1>
+
+    {% if trees %}
+    <ul>
+      {% for tree in trees %}
+      <li>
+        {{ tree.tree.name }} - {{ tree.age }} anos - Plantada em {{
+        tree.planted_at|date:"d/m/Y H:i" }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Você ainda não plantou nenhuma árvore.</p>
+    {% endif %}
+  </body>
+</html>

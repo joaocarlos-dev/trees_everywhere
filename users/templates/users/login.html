@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- templates/users/login.html -->
+    <form method="post">
+      {% csrf_token %}
+      <label for="username">Usuário:</label>
+      <input type="text" name="username" id="username" />
+      <label for="password">Senha:</label>
+      <input type="password" name="password" id="password" />
+      <button type="submit">Entrar</button>
+    </form>
+  </body>
+</html>
