@@ -1,3 +1,4 @@
+from django.forms.models import modelformset_factory
 from decimal import Decimal
 from django.db import models
 from django import forms
@@ -29,21 +30,10 @@ class PlantedTree(models.Model):
     def location(self):
         return (self.latitude, self.longitude)
 
+    @property
+    def latitude_str(self):
+        return f"{self.latitude:.6f}"
 
-class PlantTreeForm(forms.ModelForm):
-    account = forms.ModelChoiceField(
-        queryset=Account.objects.none(), label="Conta")
-
-    class Meta:
-        model = PlantedTree
-        fields = ['tree', 'age', 'latitude', 'longitude', 'account']
-        widgets = {
-            'latitude': forms.NumberInput(attrs={'step': '0.000001'}),
-            'longitude': forms.NumberInput(attrs={'step': '0.000001'}),
-            'age': forms.NumberInput(attrs={'min': 0}),
-        }
-
-    def __init__(self, user, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['account'].queryset = user.accounts.filter(  # type: ignore
-            active=True)
+    @property
+    def longitude_str(self):
+        return f"{self.longitude:.6f}"

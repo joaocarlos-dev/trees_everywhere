@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Plant Multiple Trees</title>
+  </head>
+  <body>
+    <h1>Plant Multiple Trees</h1>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <div>
+        {{ form.tree.label_tag }} {{ form.tree }}
+        {% if form.tree.errors %}<ul>{% for error in form.tree.errors %}<li style="color: red">{{ error }}</li>{% endfor %}</ul>{% endif %}
+      </div>
+
+      <div>
+        {{ form.coordinates.label_tag }} {{ form.coordinates }}
+        {% if form.coordinates.errors %}<ul>{% for error in form.coordinates.errors %}<li style="color: red">{{ error }}</li>{% endfor %}</ul>{% endif %}
+        {% if form.coordinates.help_text %}<small>{{ form.coordinates.help_text }}</small>{% endif %}
+      </div>
+
+      <button type="submit">Plant Trees</button>
+    </form>
+  </body>
+</html>

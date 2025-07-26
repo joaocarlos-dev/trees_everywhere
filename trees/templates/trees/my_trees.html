@@ -14,6 +14,7 @@
       <li>
         {{ tree.tree.name }} - {{ tree.age }} years - Planted at
         {{tree.planted_at|date:"d/m/Y H:i" }}
+        Latitudade: {{ tree.latitude_str }} Longitude: {{ tree.longitude_str }}
       </li>
 
       {% endfor %}
