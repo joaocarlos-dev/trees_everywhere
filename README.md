@@ -105,31 +105,31 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 5. Execute as migrações para criar as tabelas no banco de dados:
+### 4. Execute as migrações para criar as tabelas no banco de dados:
 
 ```bash
 python manage.py migrate
 ```
 
-### 6. Crie um superusuário para acessar o admin:
+### 5. Crie um superusuário para acessar o admin:
 
 ```bash
 python manage.py createsuperuser
 ```
 
-### 7. Execute o servidor de desenvolvimento:
+### 6. Execute o servidor de desenvolvimento:
 
 ```bash
 python manage.py runserver
 ```
 
-## 8. Acesse no navegador:
+## 7. Acesse no navegador:
 
 ### Admin: http://127.0.0.1:8000/admin/
 
 ### Aplicação: http://127.0.0.1:8000/
 
-### 9. Para rodar os testes automatizados:
+### 8. Para rodar os testes automatizados:
 
 ```bash
 python manage.py test
