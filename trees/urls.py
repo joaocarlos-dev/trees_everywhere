@@ -1,4 +1,6 @@
 from django.urls import path
+
+from trees.api_views import user_planted_trees_api
 from .views import multi_plant_view, my_trees, plant_tree_view, planted_tree_detail_view, planted_trees_in_user_accounts_view
 
 urlpatterns = [
@@ -8,4 +10,5 @@ urlpatterns = [
     path("trees/<int:pk>/", planted_tree_detail_view, name="planted_tree_detail"),
     path("trees/in-accounts/", planted_trees_in_user_accounts_view,
          name="trees_in_accounts"),
+    path('api/my-trees/', user_planted_trees_api, name='api_my_trees'),
 ]
