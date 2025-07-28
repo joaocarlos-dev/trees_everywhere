@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Planted Tree Details</title>
+  </head>
+  <body>
+    <h1>Planted Tree Details</h1>
+
+    <ul>
+      <li><strong>Tree Name:</strong> {{ planted_tree.tree.name }}</li>
+      <li><strong>Scientific name:</strong> {{ planted_tree.tree.scientific_name }}</li>
+      <li><strong>Age:</strong> {{ planted_tree.age }} year{{ planted_tree.age|pluralize }}</li>
+      <li><strong>Planted at:</strong> {{ planted_tree.planted_at|date:"d/m/Y H:i" }}</li>
+      <li><strong>Coordinates:</strong> 
+        ({{ planted_tree.latitude|stringformat:"0.6f" }}, {{ planted_tree.longitude|stringformat:"0.6f" }})
+      </li>
+    </ul>
+
+    <p><a href="{% url 'my_trees' %}">← Back to my trees</a></p>
+  </body>
+</html>

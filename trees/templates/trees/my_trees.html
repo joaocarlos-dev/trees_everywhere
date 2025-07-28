@@ -12,16 +12,15 @@
       <p>Total planted trees: {{ trees|length }}</p>
       {% for tree in trees %}
       <li>
-        {{ tree.tree.name }} - {{ tree.age }} years - Planted at
-        {{tree.planted_at|date:"d/m/Y H:i" }}
-        Latitudade: {{ tree.latitude_str }} Longitude: {{ tree.longitude_str }}
+        {{ tree.tree.name }} – Planted at {{ tree.planted_at|date:"d/m/Y H:i" }} --
+        <a href="{% url 'planted_tree_detail' tree.pk %}">View details</a>
       </li>
-
       {% endfor %}
     </ul>
     {% else %}
     <p>You don't have any planted tree.</p>
     {% endif %}
+    
     <p><a href="{% url 'plant_tree' %}">Plant new tree</a></p>
   </body>
 </html>

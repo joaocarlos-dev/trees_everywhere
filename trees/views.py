@@ -2,7 +2,7 @@ import ast
 from decimal import Decimal
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from trees.forms import MultiPlantingForm, PlantTreeForm
 from trees.models import PlantedTree
@@ -71,3 +71,9 @@ def multi_plant_view(request):
         form = MultiPlantingForm()
 
     return render(request, "trees/multi_plant.html", {"form": form})
+
+
+@login_required
+def planted_tree_detail_view(request, pk):
+    planted_tree = get_object_or_404(PlantedTree, pk=pk, user=request.user)
+    return render(request, "trees/planted_tree_detail.html", {"planted_tree": planted_tree})
