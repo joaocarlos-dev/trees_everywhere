@@ -77,3 +77,17 @@ def multi_plant_view(request):
 def planted_tree_detail_view(request, pk):
     planted_tree = get_object_or_404(PlantedTree, pk=pk, user=request.user)
     return render(request, "trees/planted_tree_detail.html", {"planted_tree": planted_tree})
+
+
+@login_required
+def planted_trees_in_user_accounts_view(request):
+    user = request.user
+    accounts = user.accounts.all()
+
+    planted_trees = PlantedTree.objects.filter(
+        account__in=accounts).select_related('tree', 'user')
+
+    context = {
+        "planted_trees": planted_trees,
+    }
+    return render(request, "trees/trees_in_accounts.html", context)

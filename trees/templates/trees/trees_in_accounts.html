@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Trees in My Accounts</title>
+  </head>
+  <body>
+    <h1>Planted Trees in Your Accounts</h1>
+
+    {% if planted_trees %}
+      <p>Total trees: {{ planted_trees|length }}</p>
+      <ul>
+        {% for tree in planted_trees %}
+          <li>
+            <strong>{{ tree.tree.name }}</strong><br />
+            Planted by: {{ tree.user.username }}<br />
+            Date: {{ tree.planted_at|date:"d/m/Y H:i" }}<br />
+            Location: ({{ tree.latitude|stringformat:".5f" }}, {{ tree.longitude|stringformat:".5f" }})
+          </li>
+          <br />
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>There are no trees planted in your accounts.</p>
+    {% endif %}
+
+    <p><a href="{% url 'my_trees' %}">Back to My Trees</a></p>
+  </body>
+</html>
