@@ -3,20 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <title>Planted Tree Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <h1>Planted Tree Details</h1>
+  <body class="bg-green-50 min-h-screen flex items-center justify-center p-6">
+    <div class="w-full max-w-xl bg-white shadow-md rounded-lg p-8">
+      <h1 class="text-3xl font-bold text-green-700 mb-6 text-center">🌳 Planted Tree Details</h1>
 
-    <ul>
-      <li><strong>Tree Name:</strong> {{ planted_tree.tree.name }}</li>
-      <li><strong>Scientific name:</strong> {{ planted_tree.tree.scientific_name }}</li>
-      <li><strong>Age:</strong> {{ planted_tree.age }} year{{ planted_tree.age|pluralize }}</li>
-      <li><strong>Planted at:</strong> {{ planted_tree.planted_at|date:"d/m/Y H:i" }}</li>
-      <li><strong>Coordinates:</strong> 
-        ({{ planted_tree.latitude|stringformat:"0.6f" }}, {{ planted_tree.longitude|stringformat:"0.6f" }})
-      </li>
-    </ul>
+      <ul class="space-y-3 text-gray-800">
+        <li>
+          <strong class="font-semibold">🌲 Tree Name:</strong>
+          {{ planted_tree.tree.name }}
+        </li>
+        <li>
+          <strong class="font-semibold">🔬 Scientific Name:</strong>
+          <span class="italic">{{ planted_tree.tree.scientific_name }}</span>
+        </li>
+        <li>
+          <strong class="font-semibold">🗓️ Age:</strong>
+          {{ planted_tree.age }} year{{ planted_tree.age|pluralize }}
+        </li>
+        <li>
+          <strong class="font-semibold">📅 Planted at:</strong>
+          {{ planted_tree.planted_at|date:"d/m/Y H:i" }}
+        </li>
+        <li>
+          <strong class="font-semibold">📍 Coordinates:</strong>
+          ({{ planted_tree.latitude|stringformat:"0.6f" }},
+          {{ planted_tree.longitude|stringformat:"0.6f" }})
+        </li>
+      </ul>
 
-    <p><a href="{% url 'my_trees' %}">← Back to my trees</a></p>
+      <div class="mt-6 text-center">
+        <a
+          href="{% url 'my_trees' %}"
+          class="text-green-600 hover:text-green-800 hover:underline text-sm"
+        >
+          ← Back to My Trees
+        </a>
+      </div>
+    </div>
   </body>
 </html>

@@ -3,24 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <title>My Trees</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <h1>Planted trees</h1>
+  <body class="bg-green-50 min-h-screen p-6">
+    <div class="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6">
+      <h1 class="text-3xl font-bold text-green-700 mb-6 text-center">Planted Trees</h1>
 
-    {% if trees %}
-    <ul>
-      <p>Total planted trees: {{ trees|length }}</p>
-      {% for tree in trees %}
-      <li>
-        {{ tree.tree.name }} – Planted at {{ tree.planted_at|date:"d/m/Y H:i" }} --
-        <a href="{% url 'planted_tree_detail' tree.pk %}">View details</a>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>You don't have any planted tree.</p>
-    {% endif %}
-    
-    <p><a href="{% url 'plant_tree' %}">Plant new tree</a></p>
+      {% if trees %}
+        <p class="text-gray-700 mb-4 font-medium">
+          🌱 Total planted trees: <span class="font-bold">{{ trees|length }}</span>
+        </p>
+        <ul class="space-y-3 mb-6">
+          {% for tree in trees %}
+            <li class="p-4 bg-green-100 rounded-md shadow-sm flex justify-between items-center">
+              <div>
+                <p class="text-green-900 font-semibold">{{ tree.tree.name }}</p>
+                <p class="text-sm text-gray-600">Planted at {{ tree.planted_at|date:"d/m/Y H:i" }}</p>
+              </div>
+              <a
+                href="{% url 'planted_tree_detail' tree.pk %}"
+                class="text-sm text-green-700 hover:underline font-medium"
+              >
+                View details →
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-gray-600 italic mb-6">You don't have any planted trees.</p>
+      {% endif %}
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href="{% url 'plant_tree' %}"
+          class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition text-center"
+        >
+          🌱 Plant new tree
+        </a>
+        <a
+          href="{% url 'multi_plant' %}"
+          class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition text-center"
+        >
+          🌳 Plant multiple trees
+        </a>
+        <a
+          href="{% url 'trees_in_accounts' %}"
+          class="bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-500 transition text-center"
+        >
+          🌿 Trees in my accounts
+        </a>
+      </div>
+
+    </div>
   </body>
 </html>

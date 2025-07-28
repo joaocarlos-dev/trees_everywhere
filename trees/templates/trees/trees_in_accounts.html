@@ -3,27 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <title>Trees in My Accounts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <h1>Planted Trees in Your Accounts</h1>
+  <body class="bg-green-50 min-h-screen flex items-center justify-center p-6">
+    <div class="w-full max-w-3xl bg-white shadow-md rounded-lg p-8">
+      <h1 class="text-3xl font-bold text-green-700 mb-6 text-center">🌱 Trees in My Accounts</h1>
 
-    {% if planted_trees %}
-      <p>Total trees: {{ planted_trees|length }}</p>
-      <ul>
-        {% for tree in planted_trees %}
-          <li>
-            <strong>{{ tree.tree.name }}</strong><br />
-            Planted by: {{ tree.user.username }}<br />
-            Date: {{ tree.planted_at|date:"d/m/Y H:i" }}<br />
-            Location: ({{ tree.latitude|stringformat:".5f" }}, {{ tree.longitude|stringformat:".5f" }})
-          </li>
-          <br />
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>There are no trees planted in your accounts.</p>
-    {% endif %}
+      {% if planted_trees %}
+        <p class="text-gray-600 mb-4">🌳 Total trees: <strong>{{ planted_trees|length }}</strong></p>
 
-    <p><a href="{% url 'my_trees' %}">Back to My Trees</a></p>
+        <ul class="space-y-6">
+          {% for tree in planted_trees %}
+            <li class="bg-green-100 p-4 rounded-lg shadow-sm">
+              <h2 class="text-xl font-semibold text-green-800">{{ tree.tree.name }}</h2>
+              <p class="text-gray-700">
+                👤 <span class="font-medium">Planted by:</span> {{ tree.user.username }}<br />
+                🗓️ <span class="font-medium">Date:</span> {{ tree.planted_at|date:"d/m/Y H:i" }}<br />
+                📍 <span class="font-medium">Location:</span>
+                ({{ tree.latitude|stringformat:".5f" }}, {{ tree.longitude|stringformat:".5f" }})
+              </p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-gray-600">There are no trees planted in your accounts.</p>
+      {% endif %}
+
+      <div class="mt-6 text-center">
+        <a href="{% url 'my_trees' %}" class="text-green-600 hover:text-green-800 hover:underline text-sm">
+          ← Back to My Trees
+        </a>
+      </div>
+    </div>
   </body>
 </html>
