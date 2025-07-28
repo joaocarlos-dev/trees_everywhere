@@ -105,8 +105,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Configure o banco de dados (por padrão SQLite):
-
 ### 5. Execute as migrações para criar as tabelas no banco de dados:
 
 ```bash
