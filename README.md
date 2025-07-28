@@ -1,7 +1,5 @@
 # Projeto Trees Everywhere
 
-## Em construção
-
 ### Descrição
 
 O projeto **Trees Everywhere** foi criado para o desafio da vaga de desenvolvedor backend júnior.
