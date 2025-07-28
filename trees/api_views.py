@@ -10,6 +10,10 @@ from trees.models import PlantedTree
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def user_planted_trees_api(request):
+    """
+    Returns:
+        A JSON response containing all trees planted by the user.
+    """
     user = request.user
     planted_trees = PlantedTree.objects.filter(user=user)
     data = [

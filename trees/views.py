@@ -17,6 +17,12 @@ def my_trees(request):
 
 @login_required
 def plant_tree_view(request):
+    """
+    Handles the planting of a new tree by the authenticated user.
+
+    Returns:
+        HttpResponse: The rendered template or a redirect to the 'my_trees' page.
+    """
     if request.method == 'POST':
         form = PlantTreeForm(request.user, request.POST)
         if form.is_valid():
@@ -39,6 +45,12 @@ def plant_tree_view(request):
 
 @login_required
 def multi_plant_view(request):
+    """
+    Handles the planting of multiple trees by a user via a form submission.
+
+    Returns:
+        HttpResponse: Renders the multi-planting form or redirects to "my_trees" on success.
+    """
     if request.method == "POST":
         form = MultiPlantingForm(request.POST)
         if form.is_valid():
@@ -76,6 +88,18 @@ def multi_plant_view(request):
 
 @login_required
 def planted_tree_detail_view(request, pk):
+    """
+    View to display the details of a specific PlantedTree instance.
+
+    Args:
+        pk (int): Primary key of the PlantedTree to retrieve.
+
+    Raises:
+        PermissionDenied: If the current user does not own the requested PlantedTree.
+
+    Returns:
+        HttpResponse: Rendered detail page for the specified PlantedTree.
+    """
     planted_tree = get_object_or_404(PlantedTree, pk=pk)
     if planted_tree.user != request.user:
         raise PermissionDenied
@@ -84,6 +108,12 @@ def planted_tree_detail_view(request, pk):
 
 @login_required
 def planted_trees_in_user_accounts_view(request):
+    """
+    View to display all planted trees associated with the accounts of the currently authenticated user.
+
+    Returns:
+        HttpResponse: Rendered HTML page displaying the planted trees in the user's accounts.
+    """
     user = request.user
     accounts = user.accounts.all()
 
