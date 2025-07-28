@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from trees.forms import MultiPlantingForm, PlantTreeForm
 from trees.models import PlantedTree
+from django.core.exceptions import PermissionDenied
 
 
 @login_required
@@ -75,7 +76,9 @@ def multi_plant_view(request):
 
 @login_required
 def planted_tree_detail_view(request, pk):
-    planted_tree = get_object_or_404(PlantedTree, pk=pk, user=request.user)
+    planted_tree = get_object_or_404(PlantedTree, pk=pk)
+    if planted_tree.user != request.user:
+        raise PermissionDenied
     return render(request, "trees/planted_tree_detail.html", {"planted_tree": planted_tree})
 
 

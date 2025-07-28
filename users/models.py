@@ -16,7 +16,7 @@ class Profile(models.Model):
 
 
 class User(AbstractUser):
-    def plant_tree(self, tree: Tree, location: tuple[Decimal, Decimal], account: Account) -> PlantedTree:
+    def plant_tree(self, tree: Tree, location: tuple[Decimal, Decimal], account: Account, age: int = 0) -> PlantedTree:
         if account is None:
             account = self.accounts.first()
             if not account:
@@ -30,10 +30,10 @@ class User(AbstractUser):
             account=account,
             latitude=latitude,
             longitude=longitude,
-            age=0
+            age=age
         )
 
-    def plant_trees(self, plants: list[tuple[Tree, tuple[Decimal, Decimal]]], account: Account) -> list[PlantedTree]:
+    def plant_trees(self, plants: list[tuple[Tree, tuple[Decimal, Decimal]]], account: Account,  age: int = 0) -> list[PlantedTree]:
         if account is None:
             account = self.accounts.first()
             if not account:
@@ -48,7 +48,7 @@ class User(AbstractUser):
                 account=account,
                 latitude=latitude,
                 longitude=longitude,
-                age=0
+                age=age
             )
             planted_trees.append(planted)
 
